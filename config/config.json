@@ -30,7 +30,8 @@
     ]
 },
 "production": {
-    "use_env_variable": "JAWSDB_URL",
+    "url": "${JAWSDB_URL}",
+
     "dialect": "mysql",
     "seederStorage": "sequelize",
     "seederStorageTableName": "SequelizeData",
