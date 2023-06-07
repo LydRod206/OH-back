@@ -23,7 +23,7 @@ function sendEmail({ recipient_email , subject , message }) {
         });
 
         const mailConfig = {
-            from: "YO! <boisefosters@gmail.com>",
+            from: "Only Hands Invoicing <boisefosters@gmail.com>",
             to: recipient_email,
             subject: subject,
             text: message,
