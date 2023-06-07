@@ -19,6 +19,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
+// this connects Netlify frontend
+app.use(cors({
+    origin: 'https://only-hands.netlify.app',
+    optionsSuccessStatus: 200
+}));
+
+
 // Set up routes
 app.use('/users', userRoutes);
 // app.use('/', allRoutes);
@@ -30,7 +37,7 @@ app.use("/testAPI", testAPIRouter);
 // Sync database and start server
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => {
-        console.log('Server running on PORT ' + PORT);
+        console.log('Backend Server running on PORT ' + PORT);
     });
 });
 
