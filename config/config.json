@@ -30,7 +30,7 @@
     ]
 },
 "production": {
-    "use_env_variable": "mysql://hqv93puohn7nck3y:w9jbuaax65mnxepn@co28d739i4m2sb7j.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/u4kvqjuc1f7qmtaz",
+    "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql",
     "seederStorage": "sequelize",
     "seederStorageTableName": "SequelizeData",
