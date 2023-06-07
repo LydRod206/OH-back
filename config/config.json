@@ -1,0 +1,47 @@
+{
+    "development": {
+        "username": "root",
+        "password": "password",
+        "database": "onlyhands_db",
+        "host": "localhost",
+        "dialect": "mysql",
+        "seederStorage": "sequelize",
+        "seederStorageTableName": "SequelizeData",
+        "seederStorageTableOptions": {
+        "tableName": "SequelizeData"
+        },
+        "seederFiles": [
+        "seeders/seed.js"
+        ]
+    },
+    "test": {
+        "username": "root",
+        "password": "password",
+        "database": "onlyhands_db",
+        "host": "localhost",
+        "dialect": "mysql",
+        "seederStorage": "sequelize",
+        "seederStorageTableName": "SequelizeData",
+        "seederStorageTableOptions": {
+        "tableName": "SequelizeData"
+        },
+        "seederFiles": [
+        "seeders/seed.js"
+        ]
+    },
+    "production": {
+        "username": "root",
+        "password": "password",
+        "database": "onlyhands_db",
+        "host": "localhost",
+        "dialect": "mysql",
+        "seederStorage": "sequelize",
+        "seederStorageTableName": "SequelizeData",
+        "seederStorageTableOptions": {
+        "tableName": "SequelizeData"
+        },
+        "seederFiles": [
+        "seeders/seed.js"
+        ]
+    }
+    }
