@@ -2,13 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const sequelize = require('./config/database');
 
+const controllers = require('./controllers');
+
+
 // Import routes
-const userRoutes = require('./routes/userRoutes');
+// const userRoutes = require('./routes/userRoutes');
 // const allRoutes = require('./controllers/');
-const mainRoutes = require('./controllers/mainRoutes');
+// const mainRoutes = require('./controllers/mainRoutes');
 
 
-var testAPIRouter = require("./routes/testAPI");
+// var testAPIRouter = require("./routes/testAPI");
 
 // Create Express app
 const app = express();
@@ -20,12 +23,13 @@ app.use(express.json());
 app.use(cors());
 
 // Set up routes
-app.use('/users', userRoutes);
+app.use('/', controllers);
+// app.use('/users', userRoutes);
 // app.use('/', allRoutes);
-app.use("/", mainRoutes);
+// app.use("/", mainRoutes);
 
 
-app.use("/testAPI", testAPIRouter);
+// app.use("/testAPI", testAPIRouter);
 
 // Sync database and start server
 sequelize.sync({ force: false }).then(() => {
