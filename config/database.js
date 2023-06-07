@@ -1,4 +1,7 @@
-const Sequelize = require('sequelize');
+// const Sequelize = require('sequelize');
+const sequelize = require('./config/sequelize');
+// Adjust the path based on your project structure
+
 require('dotenv').config();
 // console.log(process.env.JAWSDB_URL);
 
