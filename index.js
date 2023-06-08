@@ -23,7 +23,7 @@ app.use(express.json());
 
 // Enable CORS for specific origin
 app.use(cors({
-  origin: 'https://only-hands.netlify.app',
+  origin: ['https://only-hands.netlify.app','http://localhost:3000'],
   optionsSuccessStatus: 200
 }));
 
