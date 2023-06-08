@@ -16,7 +16,8 @@ app.use(cors({
 }));
 
 // Set up routes
-app.use('/', controllers);
+app.use('/api', controllers);
+
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log('Backend Server running on PORT ' + PORT);
