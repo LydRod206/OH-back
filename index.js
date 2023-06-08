@@ -3,7 +3,6 @@ const cors = require('cors');
 const sequelize = require('./config/database');
 
 const controllers = require('./controllers');
-
 const app = express();
 const PORT = process.env.PORT || 9000;
 
@@ -18,7 +17,6 @@ app.use(cors({
 
 // Set up routes
 app.use('/', controllers);
-
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log('Backend Server running on PORT ' + PORT);
