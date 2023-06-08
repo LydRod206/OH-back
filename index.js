@@ -27,7 +27,7 @@ app.use(cors({
 }));
 
 // Set up routes
-app.use('/api', controllers);
+app.use('/', controllers);
 
 app.use('/', controllers);
 // app.use('/users', userRoutes);
