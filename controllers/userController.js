@@ -15,12 +15,19 @@ const getUsers = (req, res) => {
 const getUser = (req, res) => {
   const userId = parseInt(req.params.id);
   const user = users.find((user) => user.id === userId);
-  if (user) {
-    res.json(user);
-  } else {
-    res.status(404).json({ error: "User not found" });
+
+  if (!user) {
+    return res.status(404).json({ error: "User not found." });
   }
+
+  // Check if the authenticated user has permission to access the user's information
+  if (req.user.userId !== user.id) {
+    return res.status(403).json({ error: "Access denied." });
+  }
+
+  res.json(user);
 };
+
 
 const createUser = (req, res) => {
   const { firstName, lastName, email, password } = req.body;
@@ -76,18 +83,19 @@ const loginUser = (req, res) => {
   const user = users.find((user) => user.email === email);
 
   if (!user) {
-    return res.status(401).json({ message: "Invalid email or password" });
+    return res.status(401).json({ error: "Authentication failed. User not found." });
   }
 
   bcrypt.compare(password, user.password, (err, result) => {
     if (err || !result) {
-      return res.status(401).json({ message: "Invalid email or password" });
+      return res.status(401).json({ error: "Authentication failed. Invalid email or password." });
     }
 
     const token = jwt.sign({ userId: user.id }, secretKey);
     res.json({ token });
   });
 };
+
 
 module.exports = {
   getUsers,
