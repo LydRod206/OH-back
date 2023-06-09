@@ -3,8 +3,7 @@ const jwt = require("jsonwebtoken");
 const secretKey = process.env.JWT_SECRET_KEY;
 
 const users = [
-  { id: 1, firstName: "Bella", lastName: "Swan", email: "bella@example.com", password: "twilight123" },
-  { id: 2, firstName: "Edward", lastName: "Cullen", email: "edward@example.com", password: "vampire456" }
+  { id: 1, username: "test100", email: "test100@test.com", password: "test100test100"}
 ];
 
 const getUsers = (req, res) => {
@@ -29,7 +28,7 @@ const getUser = (req, res) => {
 
 
 const createUser = (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { username, email, password } = req.body;
   const newUserId = users.length + 1;
 
   bcrypt.hash(password, 10, (err, hashedPassword) => {
@@ -39,8 +38,7 @@ const createUser = (req, res) => {
 
     const newUser = {
       id: newUserId,
-      firstName,
-      lastName,
+      username,
       email,
       password: hashedPassword, // Store the hashed password
     };
@@ -52,11 +50,11 @@ const createUser = (req, res) => {
 
 const updateUser = (req, res) => {
   const userId = parseInt(req.params.id);
-  const { firstName, lastName, email, password } = req.body;
+  const { username, email, password } = req.body;
   const user = users.find((user) => user.id === userId);
   if (user) {
-    user.firstName = firstName || user.firstName;
-    user.lastName = lastName || user.lastName;
+    user.username = username || user.username;
+    // user.lastName = lastName || user.lastName;
     user.email = email || user.email;
     user.password = password || user.password;
     res.json(user);
@@ -97,7 +95,7 @@ const loginUser = (req, res) => {
 
 
 const signup = (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { username, email, password } = req.body;
   const newUserId = users.length + 1;
 
   bcrypt.hash(password, 10, (err, hashedPassword) => {
@@ -107,8 +105,7 @@ const signup = (req, res) => {
 
     const newUser = {
       id: newUserId,
-      firstName,
-      lastName,
+      username,
       email,
       password: hashedPassword, // Store the hashed password
     };
