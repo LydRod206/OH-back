@@ -2,13 +2,14 @@ const express = require('express');
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const app = express();
-const port = 5001;
+const port = 5000;
+const passKey = process.env.JWT_SECRET_KEY;
 
 app.use(cors());
 app.use(express.json({ limit: "25mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow_Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     next();
 });
 
@@ -59,5 +60,5 @@ app.post("/send_email", (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Practice server for mail tests listening st http://localhost:${port}`);
+    console.log(`Nodemailer mail tests listening st http://localhost:${port}`);
 });

@@ -19,6 +19,13 @@ app.use(cors({
 
 app.use('/', controllers);
 
+app.get('/', (req, res) => {
+  res.send("Hello World")
+})
+app.get('/greeting', (req, res) => {
+  res.json({ greeting: "hello "})
+})
+
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log('Backend Server running on PORT ' + PORT);
