@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const secretKey = process.env.JWT_SECRET_KEY;
 
 const users = [
-  { id: 1, username: "test100", email: "test100@test.com", password: "test100test100"}
+  { id: 1, username: "test3000", email: "test3000@test.com", password: "test3000test3000"}
 ];
 
 const getUsers = (req, res) => {
