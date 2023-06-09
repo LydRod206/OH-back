@@ -111,7 +111,10 @@ const signup = (req, res) => {
     };
 
     users.push(newUser);
+    
+    // Generate a token
     const token = jwt.sign({ userId: newUser.id }, secretKey);
+
     res.status(201).json({ token });
   });
 };
