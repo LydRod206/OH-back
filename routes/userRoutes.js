@@ -31,10 +31,10 @@ let users = [];
 
 // signup a new user
 router.post('/signup', (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { username, email, password } = req.body;
 
   // Validate input data
-  if (!firstName || !lastName || !email || !password) {
+  if (!username || !email || !password) {
     return res.status(400).json({ error: 'Please provide all required fields' });
   }
 
@@ -47,8 +47,7 @@ router.post('/signup', (req, res) => {
   // Create a new user
   const newUser = {
     id: Date.now().toString(),
-    firstName,
-    lastName,
+    username,
     email,
     password,
   };
@@ -56,6 +55,7 @@ router.post('/signup', (req, res) => {
   users.push(newUser);
   res.status(201).json(newUser);
 });
+
 
 // User login
 router.post('/login', (req, res) => {
