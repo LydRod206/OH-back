@@ -1,47 +1,45 @@
 {
-    "development": {
-        "username": "root",
-        "password": "password",
-        "database": "onlyhands_db",
-        "host": "localhost",
-        "dialect": "mysql",
-        "seederStorage": "sequelize",
-        "seederStorageTableName": "SequelizeData",
-        "seederStorageTableOptions": {
-        "tableName": "SequelizeData"
-        },
-        "seederFiles": [
-        "seeders/seed.js"
-        ]
+"development": {
+    "username": "root",
+    "password": "password",
+    "database": "onlyhands_db",
+    "host": "localhost",
+    "dialect": "mysql",
+    "seederStorage": "sequelize",
+    "seederStorageTableName": "SequelizeData",
+    "seederStorageTableOptions": {
+    "tableName": "SequelizeData"
     },
-    "test": {
-        "username": "root",
-        "password": "password",
-        "database": "onlyhands_db",
-        "host": "localhost",
-        "dialect": "mysql",
-        "seederStorage": "sequelize",
-        "seederStorageTableName": "SequelizeData",
-        "seederStorageTableOptions": {
-        "tableName": "SequelizeData"
-        },
-        "seederFiles": [
-        "seeders/seed.js"
-        ]
+    "seederFiles": [
+    "seeders/seed.js"
+    ]
+},
+"test": {
+    "username": "root",
+    "password": "password",
+    "database": "onlyhands_db",
+    "host": "localhost",
+    "dialect": "mysql",
+    "seederStorage": "sequelize",
+    "seederStorageTableName": "SequelizeData",
+    "seederStorageTableOptions": {
+    "tableName": "SequelizeData"
     },
-    "production": {
-        "username": "root",
-        "password": "password",
-        "database": "onlyhands_db",
-        "host": "localhost",
-        "dialect": "mysql",
-        "seederStorage": "sequelize",
-        "seederStorageTableName": "SequelizeData",
-        "seederStorageTableOptions": {
-        "tableName": "SequelizeData"
-        },
-        "seederFiles": [
-        "seeders/seed.js"
-        ]
-    }
-    }
+    "seederFiles": [
+    "seeders/seed.js"
+    ]
+},
+"production": {
+    "url": "${JAWSDB_URL}",
+
+    "dialect": "mysql",
+    "seederStorage": "sequelize",
+    "seederStorageTableName": "SequelizeData",
+    "seederStorageTableOptions": {
+    "tableName": "SequelizeData"
+    },
+    "seederFiles": [
+    "seeders/seed.js"
+    ]
+}
+}
