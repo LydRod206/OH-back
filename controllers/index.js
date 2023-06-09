@@ -6,6 +6,7 @@ const invoiceController = require("./invoiceController");
 const jobCategoryController = require("./jobCategoryController");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const authenticate = require("./authenticate"); // Import the authentication middleware
 
 
 const router = express.Router();
@@ -16,11 +17,11 @@ router.get("/api", (req, res) => {
 });
 
 // User routes
-router.get("/api/users", userController.getUsers);
-router.get("/api/users/:id", userController.getUser);
+router.get("/api/users", authenticate, userController.getUsers); // Apply authenticate middleware
+router.get("/api/users/:id", authenticate, userController.getUser); // Apply authenticate middleware
 router.post("/api/users", userController.createUser);
-router.put("/api/users/:id", userController.updateUser);
-router.delete("/api/users/:id", userController.deleteUser);
+router.put("/api/users/:id", authenticate, userController.updateUser); // Apply authenticate middleware
+router.delete("/api/users/:id", authenticate, userController.deleteUser); // Apply authenticate middleware
 
 // Job routes
 router.get("/api/jobs", jobController.getAllJobs);
@@ -30,11 +31,11 @@ router.put("/api/jobs/:id", jobController.updateJob);
 router.delete("/api/jobs/:id", jobController.deleteJob);
 
 // Receipt routes
-router.get("/api/receipts", receiptController.getAllReceipts);
-router.get("/api/receipts/:id", receiptController.getReceiptById);
-router.post("/api/receipts", receiptController.createReceipt);
-router.put("/api/receipts/:id", receiptController.updateReceipt);
-router.delete("/api/receipts/:id", receiptController.deleteReceipt);
+router.get("/api/receipts", authenticate, receiptController.getAllReceipts); // Apply authenticate middleware
+router.get("/api/receipts/:id", authenticate, receiptController.getReceiptById); // Apply authenticate middleware
+router.post("/api/receipts", authenticate, receiptController.createReceipt); // Apply authenticate middleware
+router.put("/api/receipts/:id", authenticate, receiptController.updateReceipt); // Apply authenticate middleware
+router.delete("/api/receipts/:id", authenticate, receiptController.deleteReceipt); // Apply authenticate middleware
 
 // Invoice routes
 router.get("/api/invoices", invoiceController.getAllInvoices);
@@ -52,7 +53,6 @@ router.get("/api/job-categories/:id", jobCategoryController.getJobCategoryById);
 
 // User login 
 router.post("/api/login", userController.loginUser);
-
 
 module.exports = router;
 
