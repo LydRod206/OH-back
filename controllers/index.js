@@ -4,7 +4,7 @@ const jobController = require("./jobController");
 const receiptController = require("./receiptController");
 const invoiceController = require("./invoiceController");
 const jobCategoryController = require("./jobCategoryController");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authenticate = require("./authenticate"); // Import the authentication middleware
 
