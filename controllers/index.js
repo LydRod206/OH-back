@@ -4,6 +4,9 @@ const jobController = require("./jobController");
 const receiptController = require("./receiptController");
 const invoiceController = require("./invoiceController");
 const jobCategoryController = require("./jobCategoryController");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 
 const router = express.Router();
 
@@ -46,6 +49,10 @@ router.get("/api/job-categories/:id", jobCategoryController.getJobCategoryById);
 // router.post("/api/job-categories", jobCategoryController.createJobCategory);
 // router.put("/api/job-categories/:id", jobCategoryController.updateJobCategory);
 // router.delete("/api/job-categories/:id", jobCategoryController.deleteJobCategory);
+
+// User login 
+router.post("/api/login", userController.loginUser);
+
 
 module.exports = router;
 
