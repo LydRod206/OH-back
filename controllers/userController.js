@@ -26,7 +26,6 @@ const getUser = (req, res) => {
   res.json(user);
 };
 
-
 const createUser = (req, res) => {
   const { username, email, password } = req.body;
   const newUserId = users.length + 1;
@@ -54,7 +53,6 @@ const updateUser = (req, res) => {
   const user = users.find((user) => user.id === userId);
   if (user) {
     user.username = username || user.username;
-    // user.lastName = lastName || user.lastName;
     user.email = email || user.email;
     user.password = password || user.password;
     res.json(user);
@@ -73,8 +71,6 @@ const deleteUser = (req, res) => {
     res.status(404).json({ error: "User not found" });
   }
 };
-
-
 
 const signup = (req, res) => {
   const { username, email, password } = req.body;
@@ -129,7 +125,7 @@ module.exports = {
   updateUser,
   deleteUser,
   loginUser,
-  signup, 
+  signup,
 };
 
 
