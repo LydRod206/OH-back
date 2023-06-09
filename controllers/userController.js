@@ -1,6 +1,5 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
 const secretKey = process.env.JWT_SECRET_KEY;
 
 const users = [
@@ -97,13 +96,37 @@ const loginUser = (req, res) => {
 };
 
 
+const signup = (req, res) => {
+  const { firstName, lastName, email, password } = req.body;
+  const newUserId = users.length + 1;
+
+  bcrypt.hash(password, 10, (err, hashedPassword) => {
+    if (err) {
+      return res.status(500).json({ error: "Internal server error" });
+    }
+
+    const newUser = {
+      id: newUserId,
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword, // Store the hashed password
+    };
+
+    users.push(newUser);
+    const token = jwt.sign({ userId: newUser.id }, secretKey);
+    res.status(201).json({ token });
+  });
+};
+
 module.exports = {
   getUsers,
   getUser,
   createUser,
   updateUser,
   deleteUser,
-  loginUser
+  loginUser,
+  signup, 
 };
 
 
