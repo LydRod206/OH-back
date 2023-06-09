@@ -74,24 +74,6 @@ const deleteUser = (req, res) => {
   }
 };
 
-const loginUser = (req, res) => {
-  const { email, password } = req.body;
-
-  const user = users.find((user) => user.email === email);
-
-  if (!user) {
-    return res.status(401).json({ error: "Authentication failed. User not found." });
-  }
-
-  bcrypt.compare(password, user.password, (err, result) => {
-    if (err || !result) {
-      return res.status(401).json({ error: "Authentication failed. Invalid email or password." });
-    }
-
-    const token = jwt.sign({ userId: user.id }, secretKey);
-    res.json({ token });
-  });
-};
 
 
 const signup = (req, res) => {
@@ -111,11 +93,32 @@ const signup = (req, res) => {
     };
 
     users.push(newUser);
-    
-    // Generate a token
+
+    // Generate a JWT token
     const token = jwt.sign({ userId: newUser.id }, secretKey);
 
     res.status(201).json({ token });
+  });
+};
+
+const loginUser = (req, res) => {
+  const { email, password } = req.body;
+
+  const user = users.find((user) => user.email === email);
+
+  if (!user) {
+    return res.status(401).json({ error: "Authentication failed. User not found." });
+  }
+
+  bcrypt.compare(password, user.password, (err, result) => {
+    if (err || !result) {
+      return res.status(401).json({ error: "Authentication failed. Invalid email or password." });
+    }
+
+    // Generate a JWT token
+    const token = jwt.sign({ userId: user.id }, secretKey);
+
+    res.json({ token });
   });
 };
 
