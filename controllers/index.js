@@ -7,6 +7,8 @@ const jobCategoryController = require("./jobCategoryController");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authenticate = require("./authenticate"); // Import the authentication middleware
+const { signup } = require("./userController");
+
 
 
 const router = express.Router();
@@ -22,6 +24,10 @@ router.get("/api/users/:id", authenticate, userController.getUser); // Apply aut
 router.post("/api/users", userController.createUser);
 router.put("/api/users/:id", authenticate, userController.updateUser); // Apply authenticate middleware
 router.delete("/api/users/:id", authenticate, userController.deleteUser); // Apply authenticate middleware
+
+// Signup route
+router.post("/api/signup", userController.signup);
+
 
 // Job routes
 router.get("/api/jobs", jobController.getAllJobs);
@@ -53,6 +59,8 @@ router.get("/api/job-categories/:id", jobCategoryController.getJobCategoryById);
 
 // User login 
 router.post("/api/login", userController.loginUser);
+
+
 
 module.exports = router;
 
