@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const sequelize = require('./config/database');
 const controllers = require('./controllers');
-const authenticate = require("./controllers/authenticate");
+// const authenticate = require("./controllers/authenticate");
 
 const app = express();
 const PORT = process.env.PORT || 9000;
@@ -15,7 +15,7 @@ app.use(cors({
   optionsSuccessStatus: 200
 }));
 
-app.use(authenticate);
+// app.use(authenticate);
 
 app.use('/', controllers);
 
