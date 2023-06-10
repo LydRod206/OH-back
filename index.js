@@ -4,6 +4,7 @@ const cors = require("cors");
 const sequelize = require('./config/database');
 const controllers = require('./controllers');
 const bodyParser = require('body-parser');
+require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 9000;
@@ -25,8 +26,8 @@ function sendEmail({ recipient_email, subject, message }) {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "boisefosters@gmail.com",
-        pass: "ppjnqkpgckvlgbpp"
+        user: process.env.GMAIL_NAME,
+        pass: process.env.GMAIL_PASSKEY
       }
     });
 
@@ -57,6 +58,7 @@ app.get('/greeting', (req, res) => {
 
 app.post("/send_email", (req, res) => {
   const { recipient_email, subject, message } = req.body;
+  console.log(recipient_email, subject, message)
   sendEmail({ recipient_email, subject, message })
     .then((response) => res.send(response.message))
     .catch((error) => res.status(500).send(error.message));
