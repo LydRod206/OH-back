@@ -67,5 +67,5 @@ app.post("/send_email", (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Nodemailer tests listening st http://localhost:${port}`);
+    console.log(`Nodemailer test server listening at http://localhost:${port}`);
 });
