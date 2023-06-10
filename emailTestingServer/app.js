@@ -2,11 +2,16 @@ const express = require('express');
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const app = express();
-const port = 5000;
-const passKey = process.env.JWT_SECRET_KEY;
+const port = 5001;
+// const passKey = process.env.GMAIL_PASSKEY;
+const bodyParser = require('body-parser');
 
 app.use(cors());
+app.use(express.json());
+
 app.use(express.json({ limit: "25mb" }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -19,7 +24,9 @@ function sendEmail({ recipient_email , subject , message }) {
             service: "gmail",
             auth: {
                 user: "boisefosters@gmail.com",
-                pass: "ppjnqkpgckvlgbpp",
+                // user: process.env.GMAIL_NAME,
+                pass: "ppjnqkpgckvlgbpp"
+                // pass: process.env.GMAIL_PASSKEY
             }
         });
 
@@ -33,7 +40,7 @@ function sendEmail({ recipient_email , subject , message }) {
         transporter.sendMail(mailConfig, function(error, info) {
             if(error) {
                 console.log(error);
-                return reject({ message: `An error has occurred`});
+                return reject({ message: `An error has occurred: ${error.message}` });
             } 
             return resolve({ message: "Email sent successfully!" });
         });
@@ -60,5 +67,5 @@ app.post("/send_email", (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Nodemailer mail tests listening st http://localhost:${port}`);
+    console.log(`Nodemailer tests listening st http://localhost:${port}`);
 });
