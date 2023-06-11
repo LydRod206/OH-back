@@ -24,6 +24,10 @@ Job.init({
     end: {
         type: DataTypes.DATE,
         allowNull: false,
+    },
+    allDay: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
     }
 }, {
     sequelize,
