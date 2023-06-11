@@ -59,7 +59,7 @@ const deleteInvoice = async (req, res) => {
       where: { id: id }
     });
     if (deleted) {
-      return res.status(204).send('Invoice deleted');
+      return res.status(200).json({ message: 'Invoice deleted' });
     }
     throw new Error('Invoice not found');
   }

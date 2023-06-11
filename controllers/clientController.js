@@ -56,7 +56,7 @@ const deleteClient = async (req, res) => {
             where: { id: id }
         });
         if (deleted) {
-            return res.status(204).send("Client deleted");
+            return res.status(200).json({message: 'Client deleted'});
         }
         throw new Error("Client not found");
     } catch (error) {
