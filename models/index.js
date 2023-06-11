@@ -1,10 +1,12 @@
 const Client = require('./Client');
+const Job = require('./Job');
 const Invoice = require('./Invoice');
 
 
 // Define associations
-Invoice.belongsTo(Client, { foreignKey: 'client_id' });
-Client.hasMany(Invoice, { foreignKey: 'client_id' });
+Job.belongsTo(Client, { foreignKey: 'client_id' });
+Invoice.belongsTo(Job, { foreignKey: 'job_id' });
+Client.hasMany(Job, { foreignKey: 'client_id' });
 
 //Invoice.belongsTo(Job, { foreignKey: 'job_id' });
 //Job.hasMany(Invoice, { foreignKey: 'job_id' });
@@ -18,7 +20,7 @@ Client.hasMany(Invoice, { foreignKey: 'client_id' });
 module.exports = {
   Client,
   Invoice,
-  //Job,
+  Job,
   //Receipt,
   //User,
   //JobCategory,

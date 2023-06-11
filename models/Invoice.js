@@ -9,7 +9,7 @@ Invoice.init({
         primaryKey: true,
         autoIncrement: true,
     },
-    client_id: {
+    job_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
