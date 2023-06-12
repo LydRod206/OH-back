@@ -1,13 +1,27 @@
 const express = require('express');
-const nodemailer = require("nodemailer");
+const session = require('express-session');
 const cors = require("cors");
 const sequelize = require('./config/database');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const controllers = require('./controllers');
 const bodyParser = require('body-parser');
+const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 9000;
+
+const sess = {
+  secret: process.env.JWT_SECRET_KEY,
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize,
+  }),
+};
+
+app.use(session(sess));
 
 app.use(cors());
 app.use(express.json());
@@ -48,13 +62,13 @@ function sendEmail({ recipient_email, subject, message }) {
   });
 }
 
-app.get('/', (req, res) => {
-  res.send("Hello World");
-});
+// app.get('/', (req, res) => {
+//   res.send("Hello World");
+// });
 
-app.get('/greeting', (req, res) => {
-  res.json({ greeting: "hello" });
-});
+// app.get('/greeting', (req, res) => {
+//   res.json({ greeting: "hello" });
+// });
 
 app.post("/send_email", (req, res) => {
   const { recipient_email, subject, message } = req.body;
