@@ -1,38 +1,34 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-class Job extends Model {}
+class Client extends Model {}
 
-Job.init({
+Client.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    client_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    title: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    start: {
-        type: DataTypes.DATE,
+    address: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
-    end: {
-        type: DataTypes.DATE,
+    phone: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
-    allDay: {
-        type: DataTypes.BOOLEAN,
+    email: {
+        type: DataTypes.STRING,
         allowNull: false,
     }
 }, {
     sequelize,
-    modelName: 'Job',
-    tableName: 'jobs',
+    modelName: 'Client',
+    tableName: 'clients',
 });
 
-module.exports = Job;
+module.exports = Client;

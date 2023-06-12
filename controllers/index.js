@@ -2,6 +2,7 @@ const express = require("express");
 const userController = require("./userController");
 const jobController = require("./jobController");
 const receiptController = require("./receiptController");
+const clientController = require("./clientController");
 const invoiceController = require("./invoiceController");
 const jobCategoryController = require("./jobCategoryController");
 
@@ -32,6 +33,13 @@ router.get("/api/receipts/:id", receiptController.getReceiptById);
 router.post("/api/receipts", receiptController.createReceipt);
 router.put("/api/receipts/:id", receiptController.updateReceipt);
 router.delete("/api/receipts/:id", receiptController.deleteReceipt);
+
+// Client routes
+router.get("/api/clients", clientController.getAllClients);
+router.get("/api/clients/:id", clientController.getClientById);
+router.post("/api/clients", clientController.createClient);
+router.put("/api/clients/:id", clientController.updateClient);
+router.delete("/api/clients/:id", clientController.deleteClient);
 
 // Invoice routes
 router.get("/api/invoices", invoiceController.getAllInvoices);
