@@ -76,11 +76,10 @@ This will start the server on [localhost:9000](http://localhost:9000).
 
 The backend provides the following API routes:
 
-- `/users`: Handles user operations (GET, POST, PUT, DELETE).
+- `/clients`: Handles user operations (GET, POST, PUT, DELETE).
 - `/jobs`: Handles job operations (GET, POST, PUT, DELETE).
-- `/receipts`: Handles receipt operations (GET, POST, PUT, DELETE).
 - `/invoices`: Handles invoice operations (GET, POST, PUT, DELETE).
-- `/job-categories`: Handles job category operations (GET).
+
 
 Refer to the source code in the `controllers` directory for more details about each route.
 
